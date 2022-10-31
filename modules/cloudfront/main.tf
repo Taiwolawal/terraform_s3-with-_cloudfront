@@ -63,7 +63,7 @@ module "cloudfront" {
 
   viewer_certificate = {
     acm_certificate_arn = "get-value"
-    ssl_support_method  = "sni-only"
+    
   }
 }
 }

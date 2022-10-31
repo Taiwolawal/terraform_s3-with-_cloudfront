@@ -5,7 +5,7 @@ variable "create_bucket" {
 
 variable "bucket" {
   type = string
-  default = "demo-939328229e" 
+  default = "my-bucket" 
 }
 
 variable "acl" {

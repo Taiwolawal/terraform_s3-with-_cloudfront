@@ -20,7 +20,7 @@ variable "route53_name" {
   default     = "cloudfront.staging.togetherall.com"
 }
 
-variable "route53_record" {
+variable "route53_record_type" {
   type = string
   description = "Record type for cloudfront"
   default     = "A"

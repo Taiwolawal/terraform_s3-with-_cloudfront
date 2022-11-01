@@ -11,7 +11,7 @@ variable "bucket" {
 variable "zone_id" {
   type = string
   description = "The zone id for the domain"
-  default     = ""
+  default     = "Z0569831M1DE65ERCMP4"
 }
 
 variable "route53_name" {

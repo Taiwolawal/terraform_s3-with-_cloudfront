@@ -19,11 +19,18 @@ resource "aws_s3_bucket" "pro" {
   force_destroy = true
 }
 
-# create bucket ACL :
-resource "aws_s3_bucket_acl" "bucket_acl" {
-  bucket = aws_s3_bucket.bucket.id
+# create bucket ACL for both pro and network  :
+resource "aws_s3_bucket_acl" "network_acl" {
+  bucket = aws_s3_bucket.network.id
   acl    = "private"
 }
+
+resource "aws_s3_bucket_acl" "pro_acl" {
+  bucket = aws_s3_bucket.pro.id
+  acl    = "private"
+}
+
+
 
 # block public access :
 resource "aws_s3_bucket_public_access_block" "public_block" {

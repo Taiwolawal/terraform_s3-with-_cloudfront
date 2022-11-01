@@ -34,6 +34,6 @@ variable "route53_record" {
 
 variable "acm_certificate" {
   type = string
-  description = Record name for cloudfront
-  default     = ""
+  description = "acm certifacte for staging.togetherall.com"
+  default     = "arn:aws:acm:eu-west-2:301776873719:certificate/227b0c3c-7174-4a99-aa4d-c357e4db3b9f"
 }

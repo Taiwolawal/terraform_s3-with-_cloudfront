@@ -6,7 +6,6 @@ resource "aws_cloudfront_origin_access_identity" "oai" {
 #creating CF distribution :
 resource "aws_cloudfront_distribution" "cf_dist" {
   enabled             = true
-  aliases             = [var.route53_name]
   default_root_object = "index.html"
 
   origin {

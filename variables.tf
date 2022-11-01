@@ -8,12 +8,6 @@ variable "bucket" {
   default     = "cloudfront-togetherall-bucket"
 }
 
-variable "domain_name" {
-  type        = string
-  description = "The domain name to use"
-  default     = "demo.hands-on-cloud.com"
-}
-
 variable "zone_id" {
   type = string
   description = "The zone id for the domain"

@@ -4,9 +4,22 @@ variable "region" {
 
 variable "bucket" {
   type        = string
-  description = "Name of created S3 bucket"
+  description = "Name of created S3 bucket for statefile"
   default     = "cloudfront-togetherall-bucket"
 }
+
+variable "bucket_network" {
+  type        = string
+  description = "Name of created S3 bucket for network"
+  default     = "network-staging-together"
+}
+
+variable "bucket_pro" {
+  type        = string
+  description = "Name of created S3 bucket for pro"
+  default     = "pro-staging-togetherall"
+}
+
 
 variable "zone_id" {
   type = string

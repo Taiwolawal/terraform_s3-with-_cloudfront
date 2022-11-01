@@ -1,6 +1,16 @@
 # create S3 Bucket:
-resource "aws_s3_bucket" "bucket" {
-  bucket = var.bucket
+resource "aws_s3_bucket" "network" {
+  bucket = var.bucket_network
+
+  tags = {
+    "ManagedBy" = "Terraform"
+  }
+
+  force_destroy = true
+}
+
+resource "aws_s3_bucket" "pro" {
+  bucket = var.bucket_pro
 
   tags = {
     "ManagedBy" = "Terraform"

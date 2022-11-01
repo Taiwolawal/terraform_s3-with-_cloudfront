@@ -1,4 +1,4 @@
-# create S3 Bucket:
+# create S3 Bucket for pro and network:
 resource "aws_s3_bucket" "network" {
   bucket = var.bucket_network
 

@@ -53,7 +53,7 @@ resource "aws_s3_bucket_public_access_block" "public_block_pro" {
 
 
 # encrypt bucket using SSE-S3 to pro and network bucket :
-resource "aws_s3_bucket_server_side_encryption_configuration" "encrypt" {
+resource "aws_s3_bucket_server_side_encryption_configuration" "encrypt_network" {
   bucket = aws_s3_bucket.network.id
 
   rule {
@@ -63,7 +63,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "encrypt" {
   }
 }
 
-resource "aws_s3_bucket_server_side_encryption_configuration" "encrypt" {
+resource "aws_s3_bucket_server_side_encryption_configuration" "encrypt_pro" {
   bucket = aws_s3_bucket.pro.id
 
   rule {
@@ -74,8 +74,8 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "encrypt" {
 }
 
 # create S3 website hosting for pro and network:
-resource "aws_s3_bucket_website_configuration" "website" {
-  bucket = aws_s3_bucket.bucknet.worker.id
+resource "aws_s3_bucket_website_configuration" "website_network" {
+  bucket = aws_s3_bucket.network.id
   index_document {
     suffix = "index.html"
   }
@@ -84,8 +84,8 @@ resource "aws_s3_bucket_website_configuration" "website" {
   }
 }
 
-resource "aws_s3_bucket_website_configuration" "website" {
-  bucket = aws_s3_bucket.bucknet.pro.id
+resource "aws_s3_bucket_website_configuration" "website_pro" {
+  bucket = aws_s3_bucket.pro.id
   index_document {
     suffix = "index.html"
   }
@@ -97,7 +97,12 @@ resource "aws_s3_bucket_website_configuration" "website" {
 
 
 # add bucket policy to let the CloudFront OAI get objects:
-resource "aws_s3_bucket_policy" "bucket_policy" {
-  bucket = aws_s3_bucket.bucket.id
+resource "aws_s3_bucket_policy" "bucket_policy_network" {
+  bucket = aws_s3_bucket.network.id
+  policy = data.aws_iam_policy_document.bucket_policy_document.json
+}
+
+resource "aws_s3_bucket_policy" "bucket_policy_pro" {
+  bucket = aws_s3_bucket.pro.id
   policy = data.aws_iam_policy_document.bucket_policy_document.json
 }

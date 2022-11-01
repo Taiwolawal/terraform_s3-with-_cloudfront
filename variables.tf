@@ -11,7 +11,7 @@ variable "bucket" {
 variable "bucket_network" {
   type        = string
   description = "Name of created S3 bucket for network"
-  default     = "network-staging-together"
+  default     = "network-staging-togetherall"
 }
 
 variable "bucket_pro" {

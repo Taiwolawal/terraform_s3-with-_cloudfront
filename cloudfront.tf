@@ -1,12 +1,12 @@
 #creating OAI :
 resource "aws_cloudfront_origin_access_identity" "oai" {
-  comment = "OAI for ${var.domain_name}"
+  comment = "OAI for ${var.route53_name}"
 }
 
 #creating CF distribution :
 resource "aws_cloudfront_distribution" "cf_dist" {
   enabled             = true
-  aliases             = [var.domain_name]
+  aliases             = [var.route53_name]
   default_root_object = "website/index.html"
 
   origin {
@@ -42,13 +42,12 @@ resource "aws_cloudfront_distribution" "cf_dist" {
   }
 
   tags = {
-    "Project"   = "hands-on.cloud"
     "ManagedBy" = "Terraform"
   }
 
   viewer_certificate {
-    acm_certificate_arn      = aws_acm_certificate.cert.arn
-    ssl_support_method       = "sni-only"
-    minimum_protocol_version = "TLSv1.2_2018"
+    acm_certificate_arn      = var.acm_certificate
+  # ssl_support_method       = "sni-only"
+  # minimum_protocol_version = "TLSv1.2_2018"
   }
 }

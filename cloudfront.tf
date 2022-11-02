@@ -7,7 +7,7 @@ resource "aws_cloudfront_origin_access_identity" "oai_pro" {
   comment = "OAI for ${var.route53_name}"
 }
 
-#creating CF distribution fpr network and pro :
+#creating CF distribution for network and pro :
 resource "aws_cloudfront_distribution" "network" {
   enabled             = true
   default_root_object = "index.html"

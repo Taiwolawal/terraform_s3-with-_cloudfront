@@ -1,3 +1,18 @@
+
+resource "aws_route53_zone" "main" {
+  name = "togetherall.com"
+}
+
+resource "aws_route53_zone" "dev" {
+  name = "cloudfront.togetherall.com"
+
+  tags = {
+    Environment = "dev"
+  }
+}
+
+
+
 # generate ACM cert for domain :
 resource "aws_acm_certificate" "cert" {
   domain_name               = var.domain_name

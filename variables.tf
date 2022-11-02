@@ -19,6 +19,11 @@ variable "bucket_pro" {
   description = "Name of created S3 bucket for pro"
   default     = "pro-staging-togetherall"
 }
+variable "domain_name" {
+  type = string
+  description = "Name of domain"
+  default = "togetherall.com"
+}
 
 
 variable "zone_id" {

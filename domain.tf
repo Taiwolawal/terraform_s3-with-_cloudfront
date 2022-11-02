@@ -3,7 +3,7 @@ resource "aws_route53_zone" "main" {
   name = var.domain_name
 }
 
-resource "aws_route53_zone" "dev" {
+resource "aws_route53_zone" "staging" {
   name = "cloudfront.staging.togetherall.com"
 
   tags = {

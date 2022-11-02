@@ -14,11 +14,6 @@ variable "bucket_network" {
   default     = "network-staging-togetherall"
 }
 
-variable "bucket_pro" {
-  type        = string
-  description = "Name of created S3 bucket for pro"
-  default     = "pro-staging-togetherall"
-}
 variable "domain_name" {
   type = string
   description = "Name of domain"

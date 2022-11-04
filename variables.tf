@@ -1,4 +1,8 @@
 variable "region" {
+  default = "us-west-2"
+}
+
+variable "region_cloudfront" {
   default = "us-east-1"
 }
 
@@ -39,8 +43,3 @@ variable "route53_record_type" {
   default     = "A"
 }
 
-variable "acm_certificate" {
-  type = string
-  description = "acm certifacte for staging.togetherall.com"
-  default     = "arn:aws:acm:eu-west-2:301776873719:certificate/227b0c3c-7174-4a99-aa4d-c357e4db3b9f"
-}

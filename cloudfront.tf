@@ -14,6 +14,7 @@ data "aws_acm_certificate" "cloudfront" {
 
 #creating CF distribution for network:
 resource "aws_cloudfront_distribution" "network" {
+  provider    = "aws.global"
   enabled             = true
   default_root_object = "index.html"
 
@@ -22,7 +23,7 @@ resource "aws_cloudfront_distribution" "network" {
     origin_id   = aws_s3_bucket.network.id
 
     s3_origin_config {
-      origin_access_identity = aws_cloudfront_origin_access_identity.oai.cloudfront_access_identity_path
+      origin_access_identity = aws_cloudfront_origin_access_identity.oai_network.cloudfront_access_identity_path
     }
   }
 

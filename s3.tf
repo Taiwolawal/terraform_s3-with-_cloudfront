@@ -9,17 +9,13 @@ resource "aws_s3_bucket" "network" {
   force_destroy = true
 }
 
-
 # create bucket ACL for network  :
 resource "aws_s3_bucket_acl" "network_acl" {
   bucket = aws_s3_bucket.network.id
   acl    = "private"
 }
 
-
-
-
-# block public access to  network bucket :
+# block public access to network bucket :
 resource "aws_s3_bucket_public_access_block" "public_block_network" {
   bucket = aws_s3_bucket.network.id
 
@@ -29,8 +25,7 @@ resource "aws_s3_bucket_public_access_block" "public_block_network" {
   ignore_public_acls      = true
 }
 
-
-# encrypt bucket using SSE-S3 to  network bucket :
+# encrypt bucket using SSE-S3 to network bucket :
 resource "aws_s3_bucket_server_side_encryption_configuration" "encrypt_network" {
   bucket = aws_s3_bucket.network.id
 
@@ -40,8 +35,6 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "encrypt_network" 
     }
   }
 }
-
-
 
 # create S3 website hosting for network:
 resource "aws_s3_bucket_website_configuration" "website_network" {
@@ -53,8 +46,6 @@ resource "aws_s3_bucket_website_configuration" "website_network" {
     key = "error.html"
   }
 }
-
-
 
 # add bucket policy to let the CloudFront OAI get objects:
 resource "aws_s3_bucket_policy" "bucket_policy_network" {

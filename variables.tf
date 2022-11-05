@@ -2,14 +2,15 @@ variable "region" {
   default = "us-west-2"
 }
 
-variable "region_cloudfront" {
-  default = "us-east-1"
-}
-
 variable "bucket_statefile" {
   type        = string
   description = "Name of created S3 bucket for statefile"
   default     = "cloudfront-togetherall-bucket"
+}
+
+
+variable "region_cloudfront" {
+  default = "us-east-1"
 }
 
 variable "bucket_network" {

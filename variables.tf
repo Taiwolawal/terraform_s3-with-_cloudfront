@@ -5,7 +5,7 @@ variable "region" {
 variable "bucket_statefile" {
   type        = string
   description = "Name of created S3 bucket for statefile"
-  default     = "terraform-staging-togetherall-statefile"
+  default     = "terraform-infra-staging"
 }
 
 

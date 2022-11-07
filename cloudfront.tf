@@ -3,18 +3,18 @@ resource "aws_cloudfront_origin_access_identity" "oai_network" {
   comment = "OAI for ${var.route53_name}"
 }
 
-# Create ACM for cloudfront in us-east-1
+# Retrieve ACM for cloudfront in us-east-1
 data "aws_acm_certificate" "cloudfront" {
-  provider    = "aws.global"
+  provider    = aws.global
   domain      = "togetherall.com"
   types       = ["AMAZON_ISSUED"]
   statuses = ["ISSUED"]
   most_recent = true
 }
 
-#creating CF distribution for network:
+#creating cloudfront distribution for network:
 resource "aws_cloudfront_distribution" "network" {
-  provider    = "aws.global"
+  provider            = aws.global
   enabled             = true
   default_root_object = "index.html"
 
@@ -59,8 +59,8 @@ resource "aws_cloudfront_distribution" "network" {
 
   viewer_certificate {
     acm_certificate_arn      = "${data.aws_acm_certificate.cloudfront.arn}"
-  # ssl_support_method       = "sni-only"
-  # minimum_protocol_version = "TLSv1.2_2018"
+    ssl_support_method       = "sni-only"
+    minimum_protocol_version = "TLSv1.2_2018"
   }
 }
 

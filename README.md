@@ -1,6 +1,11 @@
 # Terraform S3 with Cloudfront
 In this project we will be working on deploying a static website to AWS Cloudfront using terraform.
 
+Pre-requiste:
+
+- Install git on your work machine.
+- Install aws-cli.
+
 The following steps are required:
 
 We will create an S3 bucket on AWS console for storing the statefile of the infrastructure we are setting up and reference it in backend.tf file.

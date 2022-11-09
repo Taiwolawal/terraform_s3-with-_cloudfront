@@ -16,26 +16,26 @@ variable "region_cloudfront" {
 variable "bucket_network" {
   type        = string
   description = "Name of created S3 bucket for network"
-  default     = "network-staging-togetherall"
+  default     = "network-staging-projectxyz"
 }
 
 variable "domain_name" {
   type = string
   description = "Name of domain"
-  default = "togetherall.com"
+  default = "projectxyz.com"
 }
 
 
 variable "zone_id" {
   type = string
   description = "The zone id for the domain"
-  default     = "Z0569831M1DE65ERCMP4"
+  default     = ""
 }
 
 variable "route53_name" {
   type = string
   description = "Record name for cloudfront"
-  default     = "cloudfront.staging.togetherall.com"
+  default     = "cloudfront.staging.projectxyz.com"
 }
 
 variable "route53_record_type" {

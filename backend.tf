@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket         = var.bucket_statefile
+    bucket         = "terraform-infra-staging"
     key            = "terraform.tfstate"
-    region         = var.region
+    region         = "eu-west-2"
     encrypt        = true
   }
 }

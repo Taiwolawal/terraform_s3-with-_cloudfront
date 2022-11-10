@@ -1,4 +1,4 @@
-# Crreate role for codepipeline
+# Create role for codepipeline
 resource "aws_iam_role" "codepipeline-role" {
   name = "codepipeline-role"
 
@@ -9,13 +9,35 @@ resource "aws_iam_role" "codepipeline-role" {
     {
       "Effect": "Allow",
       "Principal": {
-        "Service": "codebuild.amazonaws.com"
+        "Service": "codepipeline.amazonaws.com"
       },
       "Action": "sts:AssumeRole"
     }
   ]
 }
 EOF
+}
+
+# Create role for codebuild
+resource "aws_iam_role" "codebuild-role" {
+  name = "codebuild-role"
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "codebuild.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+
 }
 
 # Create a policy document and attach it to the codepipeline role which gives certain permission required
@@ -47,26 +69,7 @@ resource "aws_iam_role_policy_attachment" "tf-cicd-pipeline-attachment" {
 }
 
 
-resource "aws_iam_role" "tf-codebuild-role" {
-  name = "tf-codebuild-role"
 
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "codebuild.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
-}
-EOF
-
-}
 
 data "aws_iam_policy_document" "tf-cicd-build-policies" {
     statement{

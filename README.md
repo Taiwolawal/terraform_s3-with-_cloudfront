@@ -21,3 +21,11 @@ We wil be deploying our network application into an S3 bucket,
 - Created a Bucket Policy to enable access from the CloudFront OAI.
 
 ![image](https://user-images.githubusercontent.com/50557587/199967348-c892376a-ffcf-4c0f-a73e-8e28fe982b79.png)
+
+Setting up the the full CICD for the project, we will need the following:
+- Repository where the codes wil be taken from (Github)
+- Docker hub for images or we use AWS images
+- Go to codepipeline on the console, to create our codestar connector to github
+- Codestar connector to connect AWS codepipeline and github to get the integration going
+
+Create role for codepipeline

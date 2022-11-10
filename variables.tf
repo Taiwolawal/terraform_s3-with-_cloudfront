@@ -44,3 +44,9 @@ variable "route53_record_type" {
   default     = "A"
 }
 
+variable "codestar_connector_credentials" {
+  type = string
+  description = "Connect AWS codepipeline and github for integration"
+  default     = ""
+}
+

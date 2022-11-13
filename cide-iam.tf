@@ -40,6 +40,89 @@ EOF
 
 }
 
+resource "aws_iam_role_policy" "codepipeline_role_policy" {
+  name = "codepipeline-role-policy"
+  role = aws_iam_role.codepipeline_role.id
+
+  policy = <<EOF
+{
+    "Statement": [
+        {
+            "Action": [
+                "codestar-connections:UseConnection:*"
+            ],
+            "Resource": "{enter arn}",
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "s3:*"
+            ],
+            "Resource": "{enter arn}",
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:BatchGetBuildBatches",
+                "codebuild:StartBuildBatch"
+            ],
+            "Resource": "*",
+            "Effect": "Allow"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "appconfig:StartDeployment",
+                "appconfig:StopDeployment",
+                "appconfig:GetDeployment"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssm:DescribeParameters"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssm:GetParameters"
+            ],
+            "Resource": "*"
+        },
+        {
+         "Effect":"Allow",
+         "Action":[
+            "kms:Decrypt"
+         ],
+         "Resource":[
+            "*"
+         ]
+      }
+    ],
+    "Version": "2012-10-17"
+}
+EOF
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Create a policy document and attach it to the codepipeline role which gives certain permission required
 data "aws_iam_policy_document" "tf-cicd-pipeline-policies" {
     statement{

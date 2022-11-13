@@ -28,7 +28,5 @@ Setting up the the full CICD for the project, we will need the following:
 - Go to codepipeline on the console, to create our codestar connector to github
 - Codestar connector to connect AWS codepipeline and github to get the integration going
 
-image.png
-image.png
 
 Create role for codepipeline

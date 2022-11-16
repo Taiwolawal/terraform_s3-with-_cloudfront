@@ -1,6 +1,7 @@
-
+# Setup your build environment
 resource "aws_codebuild_project" "build_app" {
   name          = "build-app"
+  build_timeout = "5"
   service_role  = aws_iam_role.codebuild_role.arn
 
   artifacts {
@@ -28,10 +29,6 @@ resource "aws_codebuild_project" "build_app" {
 
 }
 
-resource "aws_codestarconnections_connection" "github_connection" {
-  name          = "github-connection"
-  provider_type = "GitHub"
-}
 
 resource "aws_codepipeline" "codepipeline" {
   name     = "codepipeline"

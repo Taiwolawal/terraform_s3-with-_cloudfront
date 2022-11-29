@@ -1,9 +1,9 @@
 # create certificate 
 resource "aws_acm_certificate" "cert" {
-  provider = aws.global
-  domain_name = "${var.domain_name}"
+  provider          = aws.global
+  domain_name       = var.domain_name
   validation_method = "DNS"
-  
+
 
   lifecycle {
     create_before_destroy = true
@@ -30,7 +30,7 @@ resource "aws_route53_record" "certvalidation" {
 
 # certificate validation
 resource "aws_acm_certificate_validation" "cert" {
-  provider = aws.global
-  certificate_arn = aws_acm_certificate.cert.arn
+  provider                = aws.global
+  certificate_arn         = aws_acm_certificate.cert.arn
   validation_record_fqdns = [for r in aws_route53_record.certvalidation : r.fqdn]
 }

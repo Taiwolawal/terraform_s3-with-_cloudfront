@@ -15,6 +15,14 @@ resource "aws_s3_bucket_acl" "network_acl" {
   acl    = "private"
 }
 
+# AWS recommends that you wait for 15 minutes after enabling versioning before issuing write operations (PUT or DELETE) on objects in the bucket.
+resource "aws_s3_bucket_versioning" "versioning_network" {
+  bucket = aws_s3_bucket.network.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
 # block public access to network bucket :
 resource "aws_s3_bucket_public_access_block" "public_block_network" {
   bucket = aws_s3_bucket.network.id
@@ -51,4 +59,8 @@ resource "aws_s3_bucket_website_configuration" "website_network" {
 resource "aws_s3_bucket_policy" "bucket_policy_network" {
   bucket = aws_s3_bucket.network.id
   policy = data.aws_iam_policy_document.bucket_policy_document.json
+}
+
+data "aws_s3_bucket" "bucket_network" {
+  bucket = var.bucket_network
 }

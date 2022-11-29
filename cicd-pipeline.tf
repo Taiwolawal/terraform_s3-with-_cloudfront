@@ -18,6 +18,7 @@ resource "aws_codebuild_project" "build_app" {
     image                       = "aws/codebuild/standard:5.0"
     type                        = "LINUX_CONTAINER"
     image_pull_credentials_type = "CODEBUILD"
+  }
 
   source {
     type            = "GITHUB"
@@ -71,7 +72,7 @@ resource "aws_codepipeline" "codepipeline" {
       version          = "1"
 
       configuration = {
-        ProjectName = "test"
+        ProjectName = aws_codebuild_project.build_app.name
       }
     }
   }
@@ -83,16 +84,16 @@ resource "aws_codepipeline" "codepipeline" {
       name            = "Deploy"
       category        = "Deploy"
       owner           = "AWS"
-      provider        = "CodeBuild"
+      provider        = "S3"
       input_artifacts = ["build_output"]
       version         = "1"
+      RunOrder = "1"
+      Region = "var.region
 
       configuration = {
-        ActionMode     = "REPLACE_ON_FAILURE"
-        Capabilities   = "CAPABILITY_AUTO_EXPAND,CAPABILITY_IAM"
-        OutputFileName = "CreateStackOutput.json"
-        StackName      = "MyStack"
-        TemplatePath   = "build_output::sam-templated.yaml"
+        BucketName = var.bucket_network
+        Extract = "true"
+        ObjectKey = ""
       }
     }
   }

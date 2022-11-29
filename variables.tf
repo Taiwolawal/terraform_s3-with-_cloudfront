@@ -20,32 +20,32 @@ variable "bucket_network" {
 }
 
 variable "domain_name" {
-  type = string
+  type        = string
   description = "Name of domain"
-  default = "projectxyz.com"
+  default     = "projectxyz.com"
 }
 
 
 variable "zone_id" {
-  type = string
+  type        = string
   description = "The zone id for the domain"
   default     = ""
 }
 
 variable "route53_name" {
-  type = string
+  type        = string
   description = "Record name for cloudfront"
   default     = "cloudfront.staging.projectxyz.com"
 }
 
 variable "route53_record_type" {
-  type = string
+  type        = string
   description = "Record type for cloudfront"
   default     = "A"
 }
 
 variable "codestar_connector_credentials" {
-  type = string
+  type        = string
   description = "Connect AWS codepipeline and github for integration"
   default     = ""
 }
